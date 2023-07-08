@@ -1,0 +1,66 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- generation text -->
+
+    <!-- Complete Documentation for the settings.xml file can be found at https://maven.apache.org/settings.html -->
+
+    <!--
+     - <servers> specify the repositories we deploy or release artifacts to.
+     -
+     - The <id> tag specified here should match up with an <id> tag for a <repository> or <snapshotRepository>
+     - located in the <distributionManagement> section of your project's pom.xml
+     -->
+    <servers>
+        <server>
+            <id>Nexus releases</id>
+            <username>%NEXUS_USERNAME%</username>
+            <password>%NEXUS_PASSWORD%</password>
+        </server>
+        <server>
+            <id>Nexus snapshots</id>
+            <username>%NEXUS_USERNAME%</username>
+            <password>%NEXUS_PASSWORD%</password>
+        </server>
+    </servers>
+
+    <profiles>
+        <profile>
+          <id>Nexus</id>
+          <repositories>
+            <repository>
+              <id>Nexus releases</id>
+              <name>Nexus releases</name>
+              <url>%NEXUS_MAVEN_RELEASES_URL%</url>
+              <layout>default</layout>
+              <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+              </releases>
+              <snapshots>
+                <enabled>false</enabled>
+              </snapshots>
+            </repository>
+            <repository>
+                <id>Nexus snapshots</id>
+                <name>Nexus snapshots</name>
+                <url>%NEXUS_MAVEN_SNAPSHOTS_URL%</url>
+                <layout>default</layout>
+                <releases>
+                  <enabled>false</enabled>
+                </releases>
+                <snapshots>
+                  <enabled>true</enabled>
+                  <updatePolicy>always</updatePolicy>
+                </snapshots>
+              </repository>
+          </repositories>
+        </profile>
+      </profiles>
+
+      <activeProfiles>
+        <activeProfile>Nexus</activeProfile>
+      </activeProfiles>
+</settings>
