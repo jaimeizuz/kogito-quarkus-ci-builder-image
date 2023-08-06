@@ -192,6 +192,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                <validateDMN>VALIDATE_SCHEMA,VALIDATE_MODEL,ANALYZE_DECISION_TABLE</validateDMN>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
