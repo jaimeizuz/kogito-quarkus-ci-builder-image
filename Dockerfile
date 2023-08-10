@@ -1,7 +1,7 @@
-FROM maven:3.8.5-openjdk-17-slim
+FROM alpine:3.18.3
 
 RUN  mkdir -p /etc/builder
 
-COPY files/* /etc/builder
+COPY files/* /etc/builder/
 
-RUN apt-get update && apt-get install -y xmlstarlet && mvn -f /etc/builder/pom.xml clean install
+RUN apk update && apk add openjdk17 && apk add maven && apk add git && mvn -f /etc/builder/pom.xml clean install
